@@ -40,7 +40,7 @@ def plot_line_chart(df: pd.DataFrame, stop: int, plot_title):
     :param df: input dataframe ready for plotting
     :param stop: pit stop times
     :param plot_title: title for the line graph
-    :return:
+    :return: plt
     """
     fig, ax = plt.subplots(figsize=(10, 5))
     if stop == 1:
@@ -75,9 +75,9 @@ def plot_line_chart(df: pd.DataFrame, stop: int, plot_title):
 
 def df_group_plot(df: pd.DataFrame) -> pd.DataFrame:
     """
-
-    :param df:
-    :return:
+    before plotting, clean the dataframe first
+    :param df: dataframe
+    :return: clean df
     """
     return df.groupby(by=['stop', 'proportion']).count().reset_index()
 
