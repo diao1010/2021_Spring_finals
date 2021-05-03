@@ -15,10 +15,11 @@ All information on the Formula 1 races, drivers, constructors, qualifying, circu
 
 ## Hypothesis1
 ### Less pit stops gives the driver better rank in each race
-The following boxplot shows race result of different amount of pit stop. For taking pitstops between 1 to 3, we can see that taking more stops usually brings driver a lower position. However, if we look at results for taking over 3 pit stops, there are no evidence supporing lower pitstops gives driver better position.<br>
+The following boxplot shows race result of different amount of pit stop. As we can see, taking 1 pit stop usually gives the driver a position around 7, and it goes around 9, 11, 10, 9 when the pit stop gets more. For taking pitstops between 1 to 3, we can see that taking more stops usually brings driver a lower position. However, if we look at results for taking over 3 pit stops, there are no evidence supporting lower pitstops gives driver better position.<br>
 ![](https://i.imgur.com/3y3dbGK.png)<br>
-The below plot shows the number of times of positions for taking 1, 2 and 3 pit stops. In this plot, we can see there are more drivers ending in higher positions when taking two pit stops, however this is because we are using the number of times instead of percentage of position. Since there are more records for taking two pit stops, the number of times for each position could be higher too. <br>
-If we look at the lines in this plot seperately, we can see that drivers choosing to take 1 pit stop (blue line) are more likely to end up with a higher position. This observation can also be made if we look at data for taking two pit stops (orange line). However, if we look at drivers taking 3 pit stops (green line), there are no strong relationship between position and pit stops.<br> 
+The next plot shows the number of times of positions for taking 1, 2 and 3 pit stops. In this plot, we can see there are more records showing that comparing to taking 1 pit stop, drivers end in higher positions when taking two pit stops. However, this is because we are using the number of times instead of percentage. Since there are more records for taking two pit stops, the number of times for each position could be higher too.<br>
+If we look at the lines in the previous plot separately, we can see that drivers choosing to take 1 pit stop are more likely to end up with a higher position. This observation can also be made if we look at data for taking two pit stops. However, if we look at drivers taking 3 pit stops, there are no strong relationship between position and pit stops.
+<br> 
 ![](https://i.imgur.com/Ta9c6J1.png)<br>
 With the two diagrams, there are no sufficient evidence to support our hypothesis. Therefore, we reject hypothesis1.
 
