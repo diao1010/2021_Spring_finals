@@ -8,6 +8,13 @@ def get_max_lap(df: pd.DataFrame) -> pd.DataFrame:
     (use positionOrder == 1 and stop == 1)
     :param df: input dataframe
     :return: processed dataframe
+    >>> input_df = pd.DataFrame({"raceId":[1,1,2,2,3], "year":[2011,2011,2018,2018,2020], "laps":[25,58,59,15, 60],\
+    "positionOrder":[4,1,1,4,1], "stop":[1,1,1,1,1]})
+    >>> get_max_lap(input_df)
+       raceId  year  laps
+    0       1  2011    58
+    1       2  2018    59
+    2       3  2020    60
     """
     return df[(df['positionOrder'] == 1) & (df['stop'] == 1)].reset_index(drop=True)[['raceId', 'year', 'laps']]
 
@@ -15,9 +22,17 @@ def get_max_lap(df: pd.DataFrame) -> pd.DataFrame:
 def count_proportion(df_pit: pd.DataFrame, df_race: pd.DataFrame, decimal: int) -> pd.DataFrame:
     """
     add column with the proportion during the total laps in each race
+    :param decimal:
     :param df_pit: pit dataframe
     :param df_race: race dataframe
     :return:
+    >>> df = pd.DataFrame({"raceId":[1,2,3], "lap":[25, 15, 29]})
+    >>> race = pd.DataFrame({"raceId":[1,2,3], "laps":[50, 60, 58]})
+    >>> count_proportion(df,race, 2)
+       raceId  lap  laps  proportion
+    0       1   25    50        0.50
+    1       2   15    60        0.25
+    2       3   29    58        0.50
     """
     df_new = df_pit.merge(df_race[['raceId', 'laps']], on='raceId', how='left', suffixes=('_once', '_total'))
     df_new['proportion'] = round(df_new['lap'] / df_new['laps'], decimal)
@@ -29,6 +44,12 @@ def select_finished_data(df: pd.DataFrame) -> pd.DataFrame:
     drop data rows with unfinished status
     :param df: input dataframe
     :return: modified dataframe
+    >>> input_df = pd.DataFrame({"raceId":[1,1,2,2], "statusId":[1,2,11,3]})
+    >>> select_finished_data(input_df)
+    >>> print(input_df)
+       raceId  statusId
+    0       1         1
+    2       2        11
     """
     status_in = [1, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     return df.drop(df[~df['statusId'].isin(status_in)].index, inplace=True)
