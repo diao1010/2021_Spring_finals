@@ -201,22 +201,21 @@ if __name__ == '__main__':
     result_pitstop = join_table(total_pitstop, num_result, ["raceId", "driverId"])
     result_stop = result_pitstop[["stop", "position"]]
     result_stop.boxplot(by="stop")
-    plt.show()
-    one_stop = result_pitstop.loc[result_stop["stop"] == 1]
-    one_stop["position"].value_counts().plot.bar()
-    plt.show()
-    two_stop = result_pitstop.loc[result_stop["stop"] == 2]
-    two_stop["position"].value_counts().plot.bar()
-    plt.show()
-    three_stop = result_pitstop.loc[result_stop["stop"] == 3]
-    three_stop["position"].value_counts().plot.bar()
-    plt.show()
     ten_year_circuit = past_ten_year_circuit(races_file)
     result_pitstop = join_table(result_pitstop, races_file, ["raceId"])
     ten_year_circuit_df = result_pitstop[result_pitstop["circuitId"].isin(ten_year_circuit)]
     stop_pos_cir = ten_year_circuit_df[["stop", "position", "circuitId"]]
-    for n in range(1,4):
+    for n in range(1, 4):
         for i in ten_year_circuit:
-            one_stop = stop_pos_cir.loc[(stop_pos_cir["stop"] == n) & (stop_pos_cir["circuitId"] == int(i))]
-            one_stop["position"].value_counts().plot.bar()
+            count_list = []
+            position_list = []
+            for j in range(1, 22):
+                count_list.append(0)
+                position_list.append(str(j))
+            one_stop = stop_pos_cir.loc[(stop_pos_cir["stop"] == 1) & (stop_pos_cir["circuitId"] == int(i))]
+            for m in one_stop["position"]:
+                count_list[m - 1] += 1
+            fig = plt.figure()
+            ax = fig.add_axes([0, 0, 1, 1])
+            ax.bar(position_list, count_list)
             plt.show()
