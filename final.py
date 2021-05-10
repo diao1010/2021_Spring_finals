@@ -91,7 +91,6 @@ def plot_line_chart(df: pd.DataFrame, stop: int, plot_title):
            ylabel='Race Count',
            title=plot_title)
     plt.legend()
-    return plt
 
 
 def df_group_plot(df: pd.DataFrame) -> pd.DataFrame:
@@ -103,7 +102,7 @@ def df_group_plot(df: pd.DataFrame) -> pd.DataFrame:
     return df.groupby(by=['stop', 'proportion']).count().reset_index()
 
 
-def read_data(file):
+def read_data(file: str) -> pd.DataFrame:
     """
     this function is used to turn csv file into dataframe
     :param file: input csv file name
@@ -191,6 +190,7 @@ def past_ten_year_circuit(races_file):
     return set_year_list
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     pitstops_file = read_data("data/pit_stops.csv")
     results_file = read_data("data/results.csv")
@@ -219,3 +219,5 @@ if __name__ == '__main__':
             ax = fig.add_axes([0, 0, 1, 1])
             ax.bar(position_list, count_list)
             plt.show()
+=======
+>>>>>>> 687124b8b58879bcd4d31cde5c3cfe67959d3fe9
