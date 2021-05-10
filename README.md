@@ -42,7 +42,15 @@ From the plot above, we could see that if the team chooses to pit stop twice in 
 
 If we see the plot 3 and 4 pit stops, they both have a peak in the beginning of the race. This might because in the beginning of the race, drivers will fight for the leading position and there might be some collisions between them. But since these data are already filtered as finished race. It means, even they have collision, they just need to pit and back to the race again. But we don’t think we could say they have significant difference when they need to pit stop. 
 
-We don't have strong evidence to reject the hypothesis 2 when the team pit stop times smaller than 3 times, since the plots show that most of the pit stop timing are average based on total pit times.
+Result for Hypothesis2:
+When pit stop times <=2: We don't have strong evidence to reject the hypothesis 2, since the plots show that most of the pit stop timing are average based on total pit times. 
+But for pit stop times >= 3, we could reject it since there’s no significant evidence showed the result we expected
+
+# Further analysis
+Get the tire data, everytime the team using different types of tires. 
+For example, hard tyre could run for more laps during the race so the team could use hard tyre for one pit stop, but we don’t have the dataset about tire so we couldn’t test our hypothesis. 
+And the pit stop time data could also help us to see if the time significantly affect the result.
+
 # Contribution
 * Ko-Mei Lin<br>
 complete functions, doctests and plot for hypothesis2
