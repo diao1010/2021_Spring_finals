@@ -17,11 +17,13 @@ All information on the Formula 1 races, drivers, constructors, qualifying, circu
 ### Less pit stops gives the driver better rank in each race
 The following boxplot shows race result of different amount of pit stop. As we can see, taking 1 pit stop usually gives the driver a position around 7, and it goes around 9, 11, 10, 9 when the pit stop gets more. For taking pitstops between 1 to 3, we can see that taking more stops usually brings driver a lower position. However, if we look at results for taking over 3 pit stops, there are no evidence supporting lower pitstops gives driver better position.<br>
 ![](https://i.imgur.com/3y3dbGK.png)<br>
-The next plot shows the number of times of positions for taking 1, 2 and 3 pit stops. In this plot, we can see there are more records showing that comparing to taking 1 pit stop, drivers end in higher positions when taking two pit stops. However, this is because we are using the number of times instead of percentage. Since there are more records for taking two pit stops, the number of times for each position could be higher too.<br>
-If we look at the lines in the previous plot separately, we can see that drivers choosing to take 1 pit stop are more likely to end up with a higher position. This observation can also be made if we look at data for taking two pit stops. However, if we look at drivers taking 3 pit stops, there are no strong relationship between position and pit stops.
+The next three bar charts show the count of positions in history records when taking 1, 2 or 3 pit stops:
+![](https://i.imgur.com/qMNwRYD.png)
+In these three bar charts, we can see drivers choosing to take 1 pit stop are more likely to end up with a higher position. This observation can also be made if we look at data for taking 2 and 3 pit stops.
 <br> 
-![](https://i.imgur.com/Ta9c6J1.png)<br>
-With the two diagrams, there are no sufficient evidence to support our hypothesis. Therefore, we reject hypothesis1.
+Although this result supports our hypothesis, we still want to rule out other facts that may affect race positions such as circuits. In the following table, we can see the count of positions in a given pit stop amount and circuit. These circuits that are chosen to hold f1 races every year during the past decade.
+![](https://i.imgur.com/Z3jyBY8.png)<br>
+In this table, we can see that it is more likely that a driver gets a higher position if he takes less pit stop. Therfore, there is sufficient evidence to support hypothesis1.
 
 ## Hypothesis2
 ### Laps of the each pit stop times should be similar for better tire usage.
@@ -41,3 +43,8 @@ From the plot above, we could see that if the team chooses to pit stop twice in 
 If we see the plot 3 and 4 pit stops, they both have a peak in the beginning of the race. This might because in the beginning of the race, drivers will fight for the leading position and there might be some collisions between them. But since these data are already filtered as finished race. It means, even they have collision, they just need to pit and back to the race again. But we don’t think we could say they have significant difference when they need to pit stop. 
 
 We don't have strong evidence to reject the hypothesis 2 when the team pit stop times smaller than 3 times, since the plots show that most of the pit stop timing are average based on total pit times.
+# Contribution
+* Ko-Mei Lin<br>
+complete functions, doctests and plot for hypothesis2
+* Yi-Shiuan Ho<br>
+complete functions, doctests and plot for hypothesis1
