@@ -91,7 +91,6 @@ def plot_line_chart(df: pd.DataFrame, stop: int, plot_title):
            ylabel='Race Count',
            title=plot_title)
     plt.legend()
-    return plt
 
 
 def df_group_plot(df: pd.DataFrame) -> pd.DataFrame:
@@ -103,7 +102,7 @@ def df_group_plot(df: pd.DataFrame) -> pd.DataFrame:
     return df.groupby(by=['stop', 'proportion']).count().reset_index()
 
 
-def read_data(file):
+def read_data(file: str) -> pd.DataFrame:
     """
     this function is used to turn csv file into dataframe
     :param file: input csv file name
@@ -191,32 +190,3 @@ def past_ten_year_circuit(races_file):
     return set_year_list
 
 
-if __name__ == '__main__':
-    pitstops_file = read_data("data/pit_stops.csv")
-    results_file = read_data("data/results.csv")
-    races_file = read_data("data/races.csv")
-    clean_result = delete_data(results_file, "position", "\\N")
-    num_result = turn_column_num(clean_result, "position")
-    total_pitstop = get_total_pitstop(pitstops_file)
-    result_pitstop = join_table(total_pitstop, num_result, ["raceId", "driverId"])
-    result_stop = result_pitstop[["stop", "position"]]
-    result_stop.boxplot(by="stop")
-    plt.show()
-    one_stop = result_pitstop.loc[result_stop["stop"] == 1]
-    one_stop["position"].value_counts().plot.bar()
-    plt.show()
-    two_stop = result_pitstop.loc[result_stop["stop"] == 2]
-    two_stop["position"].value_counts().plot.bar()
-    plt.show()
-    three_stop = result_pitstop.loc[result_stop["stop"] == 3]
-    three_stop["position"].value_counts().plot.bar()
-    plt.show()
-    ten_year_circuit = past_ten_year_circuit(races_file)
-    result_pitstop = join_table(result_pitstop, races_file, ["raceId"])
-    ten_year_circuit_df = result_pitstop[result_pitstop["circuitId"].isin(ten_year_circuit)]
-    stop_pos_cir = ten_year_circuit_df[["stop", "position", "circuitId"]]
-    for n in range(1,4):
-        for i in ten_year_circuit:
-            one_stop = stop_pos_cir.loc[(stop_pos_cir["stop"] == n) & (stop_pos_cir["circuitId"] == int(i))]
-            one_stop["position"].value_counts().plot.bar()
-            plt.show()
