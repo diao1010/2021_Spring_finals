@@ -169,9 +169,32 @@ def turn_column_num(df, column):
     return df
 
 
+def past_ten_year_circuit(races_file):
+    """
+    this function finds circuits that appeared every year during the past decade
+    :param races_file: dataframe of all history races
+    :return: circuits that appeared every year during the past decade
+    >>> df=pd.DataFrame({"year":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2021],"circuitId":[1,1,1,1,1,1,1,1,1,1,1,2]})
+    >>> past_ten_year_circuit(df)
+    [1]
+    """
+    year_list = {}
+    for i in range(0, len(races_file["year"])):
+        if races_file.loc[i, "year"] >= 2011:
+            if races_file.loc[i, "year"] not in year_list:
+                year_list[races_file.loc[i, "year"]] = [races_file.loc[i, "circuitId"]]
+            else:
+                year_list[races_file.loc[i, "year"]].append(races_file.loc[i, "circuitId"])
+    set_year_list = year_list[2011]
+    for i in year_list:
+        set_year_list = list(set(set_year_list) & set(year_list[i]))
+    return set_year_list
+
+
 if __name__ == '__main__':
     pitstops_file = read_data("data/pit_stops.csv")
     results_file = read_data("data/results.csv")
+    races_file = read_data("data/races.csv")
     clean_result = delete_data(results_file, "position", "\\N")
     num_result = turn_column_num(clean_result, "position")
     total_pitstop = get_total_pitstop(pitstops_file)
@@ -180,9 +203,20 @@ if __name__ == '__main__':
     result_stop.boxplot(by="stop")
     plt.show()
     one_stop = result_pitstop.loc[result_stop["stop"] == 1]
-    one_stop["position"].value_counts().plot(x="asdd", y="qwe")
-    two_stop = result_pitstop.loc[result_stop["stop"] == 2]
-    two_stop["position"].value_counts().plot(x="asdd", y="qwe")
-    three_stop = result_pitstop.loc[result_stop["stop"] == 3]
-    three_stop["position"].value_counts().plot(x="asdd", y="qwe")
+    one_stop["position"].value_counts().plot.bar()
     plt.show()
+    two_stop = result_pitstop.loc[result_stop["stop"] == 2]
+    two_stop["position"].value_counts().plot.bar()
+    plt.show()
+    three_stop = result_pitstop.loc[result_stop["stop"] == 3]
+    three_stop["position"].value_counts().plot.bar()
+    plt.show()
+    ten_year_circuit = past_ten_year_circuit(races_file)
+    result_pitstop = join_table(result_pitstop, races_file, ["raceId"])
+    ten_year_circuit_df = result_pitstop[result_pitstop["circuitId"].isin(ten_year_circuit)]
+    stop_pos_cir = ten_year_circuit_df[["stop", "position", "circuitId"]]
+    for n in range(1,4):
+        for i in ten_year_circuit:
+            one_stop = stop_pos_cir.loc[(stop_pos_cir["stop"] == n) & (stop_pos_cir["circuitId"] == int(i))]
+            one_stop["position"].value_counts().plot.bar()
+            plt.show()
