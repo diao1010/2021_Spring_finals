@@ -189,8 +189,6 @@ def past_ten_year_circuit(races_file):
         set_year_list = list(set(set_year_list) & set(year_list[i]))
     return set_year_list
 
-
-<<<<<<< HEAD
 if __name__ == '__main__':
     pitstops_file = read_data("data/pit_stops.csv")
     results_file = read_data("data/results.csv")
@@ -219,5 +217,3 @@ if __name__ == '__main__':
             ax = fig.add_axes([0, 0, 1, 1])
             ax.bar(position_list, count_list)
             plt.show()
-=======
->>>>>>> 687124b8b58879bcd4d31cde5c3cfe67959d3fe9
